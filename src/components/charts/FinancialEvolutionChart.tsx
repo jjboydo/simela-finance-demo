@@ -76,7 +76,7 @@ export function FinancialEvolutionChart({ data, className }: FinancialEvolutionC
               tickLine={false}
               axisLine={false}
               tick={{ fill: CHART_COLORS.axis, fontSize: 11 }}
-              width={64}
+              width={72}
             />
             <Tooltip
               content={<ChartTooltip />}

@@ -32,6 +32,14 @@
   .tabular-nums {
     font-variant-numeric: tabular-nums;
   }
+
+  .app-canvas {
+    background-image:
+      radial-gradient(ellipse at top right, rgba(37, 99, 235, 0.07), transparent 55%),
+      radial-gradient(ellipse at top left, rgba(16, 185, 129, 0.035), transparent 42%);
+    background-repeat: no-repeat;
+    background-size: 100% 520px, 100% 420px;
+  }
 }
 
 ::-webkit-scrollbar {

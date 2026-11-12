@@ -147,9 +147,15 @@ export function ReceivablesPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
-          label="Total pendiente de cobro"
+          label="Total pendiente"
           value={formatCurrency(receivables.total)}
-          description={`${formatNumber(receivables.invoices.length)} facturas abiertas al cierre.`}
+          description="Saldo pendiente al cierre del período."
+          hint={
+            <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-1.5 py-0.5 text-[10px] font-medium text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+              {formatNumber(receivables.invoices.length)} facturas abiertas
+            </span>
+          }
           icon={HandCoins}
           tone="blue"
         />
@@ -182,7 +188,13 @@ export function ReceivablesPage() {
         <StatCard
           label="Tasa de cobranza"
           value={formatPercent(collectionRate, 1)}
-          description="Cobrado sobre facturado en los últimos 12 meses."
+          description="Cobrado sobre facturado en el período."
+          hint={
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              Últimos 12 meses
+            </span>
+          }
           icon={Percent}
           tone="emerald"
         />

@@ -12,6 +12,7 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { KpiCard } from '@/components/dashboard/KpiCard';
+import { PeriodInsight } from '@/components/dashboard/PeriodInsight';
 import { AlertsPanel } from '@/components/dashboard/AlertsPanel';
 import { ReceivablesOverview } from '@/components/dashboard/ReceivablesOverview';
 import { FinancialEvolutionChart } from '@/components/charts/FinancialEvolutionChart';
@@ -30,7 +31,7 @@ import {
   percentChange,
 } from '@/lib/calculations';
 import { downloadCsv } from '@/lib/csv';
-import { formatCurrency, formatCsvNumber, formatDate, formatPercent } from '@/lib/formatters';
+import { formatCurrency, formatCsvNumber, formatDate } from '@/lib/formatters';
 
 export function OverviewPage() {
   const { period, definition } = usePeriod();
@@ -91,6 +92,16 @@ export function OverviewPage() {
         }
       />
 
+      <PeriodInsight
+        revenue={summary.revenue}
+        result={summary.result}
+        margin={summary.margin}
+        revenueDelta={percentChange(summary.revenue, summary.previous.revenue)}
+        comparisonLabel={definition.comparisonLabel}
+        overdue={receivables.overdue}
+        overdueShare={receivables.total ? (receivables.overdue / receivables.total) * 100 : 0}
+      />
+
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard
           id="revenue"
@@ -98,7 +109,7 @@ export function OverviewPage() {
           value={formatCurrency(summary.revenue)}
           delta={percentChange(summary.revenue, summary.previous.revenue)}
           positiveWhen="up"
-          description="Facturación acumulada del período seleccionado."
+          description="Facturación acumulada del período."
           icon={TrendingUp}
           tone="blue"
           sparkline={sparklines.revenue}
@@ -110,7 +121,7 @@ export function OverviewPage() {
           value={formatCurrency(summary.costs)}
           delta={percentChange(summary.costs, summary.previous.costs)}
           positiveWhen="down"
-          description="Costos fijos y variables registrados en el período."
+          description="Costos fijos y variables del período."
           icon={Wallet}
           tone="rose"
           sparkline={sparklines.costs}
@@ -122,7 +133,7 @@ export function OverviewPage() {
           value={formatCurrency(summary.pending)}
           delta={percentChange(summary.pending, summary.previous.pending)}
           positiveWhen="down"
-          description="Saldo pendiente de clientes al cierre del período."
+          description="Saldo pendiente al cierre del período."
           icon={HandCoins}
           tone="amber"
           sparkline={sparklines.pending}
@@ -134,7 +145,7 @@ export function OverviewPage() {
           value={formatCurrency(summary.result)}
           delta={percentChange(summary.result, summary.previous.result)}
           positiveWhen="up"
-          description={`Margen operativo del ${formatPercent(summary.margin, 1)} sobre ingresos.`}
+          description="Ingresos menos costos operativos."
           icon={CircleDollarSign}
           tone="emerald"
           sparkline={sparklines.result}

@@ -14,7 +14,7 @@ export function PageHeader({ title, description, meta, actions, footnote }: Page
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0">
           {meta ? <div className="mb-3 flex flex-wrap items-center gap-2">{meta}</div> : null}
-          <h1 className="text-[26px] font-semibold leading-tight tracking-tight text-slate-900">
+          <h1 className="text-[27px] font-semibold leading-tight tracking-tight text-slate-900 sm:text-[30px]">
             {title}
           </h1>
           {description ? (

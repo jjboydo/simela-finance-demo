@@ -11,7 +11,7 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
   return (
     <div className="flex h-full flex-col overflow-y-auto">
       <div className="flex items-center gap-3 px-5 py-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 text-white shadow-sm">
           <Activity className="h-5 w-5" />
         </div>
         <div className="min-w-0">

@@ -166,9 +166,9 @@ export function CostsPage() {
           tone="amber"
         />
         <StatCard
-          label="Costo sobre facturación"
+          label="Costo / facturación"
           value={formatPercent(costRatio, 1)}
-          description="Peso de los costos filtrados sobre los ingresos."
+          description="Peso de los costos sobre los ingresos."
           icon={Percent}
           tone="rose"
         />

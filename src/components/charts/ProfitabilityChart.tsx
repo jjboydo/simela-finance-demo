@@ -53,7 +53,7 @@ export function ProfitabilityChart({ data, className }: ProfitabilityChartProps)
               tickLine={false}
               axisLine={false}
               tick={{ fill: CHART_COLORS.axis, fontSize: 11 }}
-              width={62}
+              width={72}
             />
             <YAxis
               yAxisId="margin"

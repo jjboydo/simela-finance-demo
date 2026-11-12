@@ -15,31 +15,35 @@ import { cn } from '@/lib/utils';
 
 const severityConfig: Record<
   AlertSeverity,
-  { icon: LucideIcon; wrapper: string; label: string; badge: 'danger' | 'warning' | 'success' | 'info' }
+  { icon: LucideIcon; wrapper: string; label: string; badge: 'danger' | 'warning' | 'success' | 'info'; border: string }
 > = {
   critica: {
     icon: AlertTriangle,
     wrapper: 'bg-rose-50 text-rose-600',
     label: 'Crítica',
     badge: 'danger',
+    border: 'border-l-rose-400',
   },
   advertencia: {
     icon: AlertCircle,
     wrapper: 'bg-amber-50 text-amber-600',
     label: 'Atención',
     badge: 'warning',
+    border: 'border-l-amber-400',
   },
   positiva: {
     icon: TrendingUp,
     wrapper: 'bg-emerald-50 text-emerald-600',
     label: 'Positiva',
     badge: 'success',
+    border: 'border-l-emerald-400',
   },
   info: {
     icon: Info,
     wrapper: 'bg-blue-50 text-blue-600',
     label: 'Informativa',
     badge: 'info',
+    border: 'border-l-blue-400',
   },
 };
 
@@ -68,7 +72,10 @@ export function AlertsPanel({ alerts, className }: AlertsPanelProps) {
             <Link
               key={alert.id}
               to={alert.href}
-              className="group flex items-start gap-3 rounded-lg border border-slate-100 p-3 transition-colors hover:border-slate-200 hover:bg-slate-50"
+              className={cn(
+                'group flex items-start gap-3 rounded-lg border border-slate-100 border-l-2 p-3 transition-colors hover:border-slate-200 hover:bg-slate-50',
+                config.border,
+              )}
             >
               <span
                 className={cn(

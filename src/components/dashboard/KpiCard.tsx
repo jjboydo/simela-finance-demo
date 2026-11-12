@@ -14,6 +14,13 @@ const iconToneClasses: Record<Tone, string> = {
   amber: 'bg-amber-50 text-amber-600',
 };
 
+const accentClasses: Record<Tone, string> = {
+  blue: 'bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300',
+  rose: 'bg-gradient-to-r from-rose-500 via-rose-400 to-rose-300',
+  emerald: 'bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-300',
+  amber: 'bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300',
+};
+
 const trendClasses: Record<TrendTone, string> = {
   positive: 'bg-emerald-50 text-emerald-700',
   negative: 'bg-rose-50 text-rose-700',
@@ -54,8 +61,9 @@ export function KpiCard({
   const TrendIcon = delta === null || Math.abs(delta) < 0.05 ? Minus : delta > 0 ? ArrowUpRight : ArrowDownRight;
 
   return (
-    <Card>
-      <CardContent className="p-5">
+    <Card className="relative overflow-hidden transition-shadow duration-200 hover:shadow-md">
+      <span className={cn('absolute inset-x-0 top-0 h-[3px]', accentClasses[tone])} />
+      <CardContent className="flex h-full flex-col p-5 pt-6">
         <div className="flex items-start justify-between gap-3">
           <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{label}</p>
           <span className={cn('flex h-9 w-9 shrink-0 items-center justify-center rounded-lg', iconToneClasses[tone])}>
@@ -65,25 +73,21 @@ export function KpiCard({
         <p className="mt-2.5 text-[24px] font-semibold leading-none tracking-tight text-slate-900 tabular-nums">
           {value}
         </p>
-        <div className="mt-3 flex items-end justify-between gap-3">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span
-                className={cn(
-                  'inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[11px] font-semibold tabular-nums',
-                  trendClasses[trendTone],
-                )}
-              >
-                <TrendIcon className="h-3 w-3" />
-                {delta === null ? '—' : formatSignedPercent(delta, 1)}
-              </span>
-              <span className="text-[10px] text-slate-400">vs. período anterior</span>
-            </div>
-            <p className="mt-2 text-[11px] leading-relaxed text-slate-500">{description}</p>
-          </div>
-          <div className="w-[82px] shrink-0">
-            <Sparkline data={sparkline} color={sparklineColor} id={id} />
-          </div>
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          <span
+            className={cn(
+              'inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[11px] font-semibold tabular-nums',
+              trendClasses[trendTone],
+            )}
+          >
+            <TrendIcon className="h-3 w-3" />
+            {delta === null ? '—' : formatSignedPercent(delta, 1)}
+          </span>
+          <span className="text-[10px] text-slate-400">vs. período anterior</span>
+        </div>
+        <p className="mt-2 text-[11px] leading-relaxed text-slate-500">{description}</p>
+        <div className="mt-auto pt-4">
+          <Sparkline data={sparkline} color={sparklineColor} id={id} />
         </div>
       </CardContent>
     </Card>

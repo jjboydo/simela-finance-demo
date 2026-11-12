@@ -56,7 +56,7 @@ export function MonthlyRevenueChart({
               tickLine={false}
               axisLine={false}
               tick={{ fill: CHART_COLORS.axis, fontSize: 11 }}
-              width={68}
+              width={72}
             />
             <Tooltip
               content={<ChartTooltip />}

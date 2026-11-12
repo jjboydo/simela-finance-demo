@@ -22,7 +22,7 @@ export function ChartCard({
   contentClassName,
 }: ChartCardProps) {
   return (
-    <Card className={cn('flex flex-col', className)}>
+    <Card className={cn('flex flex-col transition-shadow duration-200 hover:shadow-md', className)}>
       <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
         <div className="min-w-0 space-y-1">
           <CardTitle>{title}</CardTitle>

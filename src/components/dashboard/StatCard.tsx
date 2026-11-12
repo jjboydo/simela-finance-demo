@@ -25,8 +25,8 @@ interface StatCardProps {
 
 export function StatCard({ label, value, description, hint, icon: Icon, tone = 'blue' }: StatCardProps) {
   return (
-    <Card>
-      <CardContent className="p-5">
+    <Card className="transition-shadow duration-200 hover:shadow-md">
+      <CardContent className="flex h-full flex-col p-5">
         <div className="flex items-center justify-between gap-3">
           <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{label}</p>
           <span className={cn('flex h-9 w-9 shrink-0 items-center justify-center rounded-lg', toneClasses[tone])}>
@@ -36,8 +36,12 @@ export function StatCard({ label, value, description, hint, icon: Icon, tone = '
         <p className="mt-2 whitespace-nowrap text-[20px] font-semibold leading-tight tracking-tight text-slate-900 tabular-nums">
           {value}
         </p>
-        {hint ? <div className="mt-2">{hint}</div> : null}
-        {description ? <p className="mt-2 text-xs leading-relaxed text-slate-500">{description}</p> : null}
+        <div className="mt-auto pt-3">
+          {hint ? <div className="mb-2">{hint}</div> : null}
+          {description ? (
+            <p className="text-xs leading-relaxed text-slate-500">{description}</p>
+          ) : null}
+        </div>
       </CardContent>
     </Card>
   );
