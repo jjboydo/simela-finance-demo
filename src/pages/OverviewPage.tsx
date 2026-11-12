@@ -113,7 +113,7 @@ export function OverviewPage() {
           icon={TrendingUp}
           tone="blue"
           sparkline={sparklines.revenue}
-          sparklineColor="#2563eb"
+          sparklineColor="#4f46e5"
         />
         <KpiCard
           id="costs"
@@ -125,7 +125,7 @@ export function OverviewPage() {
           icon={Wallet}
           tone="rose"
           sparkline={sparklines.costs}
-          sparklineColor="#e11d48"
+          sparklineColor="#f43f5e"
         />
         <KpiCard
           id="pending"
@@ -149,7 +149,7 @@ export function OverviewPage() {
           icon={CircleDollarSign}
           tone="emerald"
           sparkline={sparklines.result}
-          sparklineColor="#059669"
+          sparklineColor="#10b981"
         />
       </div>
 

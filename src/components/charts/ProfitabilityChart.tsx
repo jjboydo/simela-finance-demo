@@ -27,6 +27,7 @@ export function ProfitabilityChart({ data, className }: ProfitabilityChartProps)
       description="Evolución de los últimos 12 meses. El margen se calcula sobre los ingresos."
       className={className}
       contentClassName="flex flex-col"
+      accent="from-violet-500 via-purple-500 to-fuchsia-400"
       footer={
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px]">
           <span className="text-slate-500">Facturación menos costos = resultado operativo.</span>
@@ -78,7 +79,7 @@ export function ProfitabilityChart({ data, className }: ProfitabilityChartProps)
               yAxisId="money"
               name="Ingresos"
               dataKey="revenue"
-              fill="#2563eb"
+              fill={CHART_COLORS.ingresos}
               radius={[4, 4, 0, 0]}
               barSize={16}
             />
@@ -86,7 +87,7 @@ export function ProfitabilityChart({ data, className }: ProfitabilityChartProps)
               yAxisId="money"
               name="Costos"
               dataKey="costs"
-              fill="#94a3b8"
+              fill="#fb7185"
               radius={[4, 4, 0, 0]}
               barSize={16}
             />

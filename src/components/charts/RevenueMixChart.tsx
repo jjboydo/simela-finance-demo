@@ -7,9 +7,10 @@ import { ChartTooltip } from './ChartTooltip';
 interface RevenueMixChartProps {
   data: UnitRevenueBreakdown[];
   className?: string;
+  accent?: string;
 }
 
-export function RevenueMixChart({ data, className }: RevenueMixChartProps) {
+export function RevenueMixChart({ data, className, accent }: RevenueMixChartProps) {
   const total = data.reduce((sum, item) => sum + item.amount, 0);
   const chartData = data.map((item) => ({
     name: item.unit.shortName,
@@ -23,6 +24,7 @@ export function RevenueMixChart({ data, className }: RevenueMixChartProps) {
       title="Composición de ingresos"
       description="Distribución de la facturación por unidad de negocio."
       className={className}
+      accent={accent}
     >
       <div className="flex flex-col items-center gap-5">
         <div className="relative h-[190px] w-full max-w-[210px] shrink-0">

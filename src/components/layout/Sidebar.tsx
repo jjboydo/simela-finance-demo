@@ -11,11 +11,11 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
   return (
     <div className="flex h-full flex-col overflow-y-auto">
       <div className="flex items-center gap-3 px-5 py-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 text-white shadow-sm">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-blue-500 to-cyan-400 text-white shadow-sm shadow-indigo-500/20">
           <Activity className="h-5 w-5" />
         </div>
         <div className="min-w-0">
-          <p className="text-[13px] font-semibold tracking-[0.13em] text-slate-900">SIMELA FINANCE</p>
+          <p className="font-display text-[15px] font-semibold tracking-[0.15em] text-slate-900">SIMELA</p>
           <p className="text-[11px] text-slate-500">Gestión financiera</p>
         </div>
       </div>
@@ -36,9 +36,7 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
                 className={({ isActive }) =>
                   cn(
                     'group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors',
-                    isActive
-                      ? 'bg-blue-50 font-medium text-blue-700'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                    isActive ? cn('font-medium', item.theme.active) : cn('text-slate-600', item.theme.hover),
                   )
                 }
               >
@@ -46,12 +44,15 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
                   <>
                     <Icon
                       className={cn(
-                        'h-4 w-4 shrink-0',
-                        isActive ? 'text-blue-600' : 'text-slate-400 group-hover:text-slate-600',
+                        'h-4 w-4 shrink-0 transition-opacity',
+                        isActive ? 'text-current' : item.theme.icon,
+                        !isActive && 'opacity-75 group-hover:opacity-100',
                       )}
                     />
                     <span className="min-w-0 flex-1">{item.label}</span>
-                    {isActive ? <span className="h-1.5 w-1.5 rounded-full bg-blue-500" /> : null}
+                    {isActive ? (
+                      <span className={cn('h-1.5 w-1.5 rounded-full', item.theme.dot)} />
+                    ) : null}
                   </>
                 )}
               </NavLink>
@@ -61,9 +62,9 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
       </nav>
 
       <div className="p-3">
-        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
+        <div className="rounded-xl border border-indigo-100/80 bg-gradient-to-br from-indigo-50/80 via-white to-cyan-50/50 p-4">
           <div className="flex items-center gap-2">
-            <Building2 className="h-4 w-4 shrink-0 text-slate-400" />
+            <Building2 className="h-4 w-4 shrink-0 text-indigo-400" />
             <p className="text-sm font-medium text-slate-800">Simela Salud Laboral</p>
           </div>
           <div className="mt-2 flex items-center gap-1.5">
@@ -82,7 +83,7 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
 
 export function Sidebar() {
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 border-r border-slate-200 bg-white lg:block">
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 border-r border-slate-200 bg-gradient-to-b from-white via-white to-slate-50/80 lg:block">
       <SidebarContent />
     </aside>
   );

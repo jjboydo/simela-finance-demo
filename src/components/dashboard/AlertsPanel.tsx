@@ -15,7 +15,14 @@ import { cn } from '@/lib/utils';
 
 const severityConfig: Record<
   AlertSeverity,
-  { icon: LucideIcon; wrapper: string; label: string; badge: 'danger' | 'warning' | 'success' | 'info'; border: string }
+  {
+    icon: LucideIcon;
+    wrapper: string;
+    label: string;
+    badge: 'danger' | 'warning' | 'success' | 'info';
+    border: string;
+    surface: string;
+  }
 > = {
   critica: {
     icon: AlertTriangle,
@@ -23,6 +30,7 @@ const severityConfig: Record<
     label: 'Crítica',
     badge: 'danger',
     border: 'border-l-rose-400',
+    surface: 'border-rose-100 bg-rose-50/60 hover:bg-rose-50',
   },
   advertencia: {
     icon: AlertCircle,
@@ -30,6 +38,7 @@ const severityConfig: Record<
     label: 'Atención',
     badge: 'warning',
     border: 'border-l-amber-400',
+    surface: 'border-amber-100 bg-amber-50/60 hover:bg-amber-50',
   },
   positiva: {
     icon: TrendingUp,
@@ -37,6 +46,7 @@ const severityConfig: Record<
     label: 'Positiva',
     badge: 'success',
     border: 'border-l-emerald-400',
+    surface: 'border-emerald-100 bg-emerald-50/60 hover:bg-emerald-50',
   },
   info: {
     icon: Info,
@@ -44,6 +54,7 @@ const severityConfig: Record<
     label: 'Informativa',
     badge: 'info',
     border: 'border-l-blue-400',
+    surface: 'border-blue-100 bg-blue-50/60 hover:bg-blue-50',
   },
 };
 
@@ -73,7 +84,8 @@ export function AlertsPanel({ alerts, className }: AlertsPanelProps) {
               key={alert.id}
               to={alert.href}
               className={cn(
-                'group flex items-start gap-3 rounded-lg border border-slate-100 border-l-2 p-3 transition-colors hover:border-slate-200 hover:bg-slate-50',
+                'group flex items-start gap-3 rounded-lg border border-l-2 p-3 transition-colors',
+                config.surface,
                 config.border,
               )}
             >

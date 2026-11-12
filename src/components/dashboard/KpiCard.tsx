@@ -7,18 +7,27 @@ import { cn } from '@/lib/utils';
 type Tone = 'blue' | 'rose' | 'emerald' | 'amber';
 type TrendTone = 'positive' | 'negative' | 'neutral';
 
-const iconToneClasses: Record<Tone, string> = {
-  blue: 'bg-blue-50 text-blue-600',
-  rose: 'bg-rose-50 text-rose-600',
-  emerald: 'bg-emerald-50 text-emerald-600',
-  amber: 'bg-amber-50 text-amber-600',
-};
-
-const accentClasses: Record<Tone, string> = {
-  blue: 'bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300',
-  rose: 'bg-gradient-to-r from-rose-500 via-rose-400 to-rose-300',
-  emerald: 'bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-300',
-  amber: 'bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300',
+const toneStyles: Record<Tone, { surface: string; icon: string; accent: string }> = {
+  blue: {
+    surface: 'bg-gradient-to-br from-blue-50/90 via-white to-indigo-50/40',
+    icon: 'bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-sm shadow-blue-500/25',
+    accent: 'from-blue-500 via-indigo-400 to-cyan-300',
+  },
+  rose: {
+    surface: 'bg-gradient-to-br from-rose-50/90 via-white to-orange-50/40',
+    icon: 'bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-sm shadow-rose-500/25',
+    accent: 'from-rose-500 via-orange-400 to-amber-300',
+  },
+  emerald: {
+    surface: 'bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/40',
+    icon: 'bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-sm shadow-emerald-500/25',
+    accent: 'from-emerald-500 via-teal-400 to-cyan-300',
+  },
+  amber: {
+    surface: 'bg-gradient-to-br from-amber-50/90 via-white to-yellow-50/40',
+    icon: 'bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-sm shadow-amber-500/25',
+    accent: 'from-amber-500 via-orange-400 to-yellow-300',
+  },
 };
 
 const trendClasses: Record<TrendTone, string> = {
@@ -61,12 +70,12 @@ export function KpiCard({
   const TrendIcon = delta === null || Math.abs(delta) < 0.05 ? Minus : delta > 0 ? ArrowUpRight : ArrowDownRight;
 
   return (
-    <Card className="relative overflow-hidden transition-shadow duration-200 hover:shadow-md">
-      <span className={cn('absolute inset-x-0 top-0 h-[3px]', accentClasses[tone])} />
-      <CardContent className="flex h-full flex-col p-5 pt-6">
+    <Card className={cn('relative overflow-hidden transition-shadow duration-200 hover:shadow-md', toneStyles[tone].surface)}>
+      <span className={cn('absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r', toneStyles[tone].accent)} />
+      <CardContent className="flex h-full flex-col p-5 pt-6 sm:pt-6">
         <div className="flex items-start justify-between gap-3">
           <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{label}</p>
-          <span className={cn('flex h-9 w-9 shrink-0 items-center justify-center rounded-lg', iconToneClasses[tone])}>
+          <span className={cn('flex h-9 w-9 shrink-0 items-center justify-center rounded-lg', toneStyles[tone].icon)}>
             <Icon className="h-4 w-4" />
           </span>
         </div>
@@ -83,7 +92,7 @@ export function KpiCard({
             <TrendIcon className="h-3 w-3" />
             {delta === null ? '—' : formatSignedPercent(delta, 1)}
           </span>
-          <span className="text-[10px] text-slate-400">vs. período anterior</span>
+          <span className="text-[10px] text-slate-400">frente al anterior</span>
         </div>
         <p className="mt-2 text-[11px] leading-relaxed text-slate-500">{description}</p>
         <div className="mt-auto pt-4">

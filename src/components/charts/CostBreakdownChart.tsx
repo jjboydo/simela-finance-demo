@@ -18,9 +18,10 @@ interface CostBreakdownChartProps {
   data: CategoryBreakdown[];
   selectedCategory?: string;
   className?: string;
+  accent?: string;
 }
 
-export function CostBreakdownChart({ data, selectedCategory, className }: CostBreakdownChartProps) {
+export function CostBreakdownChart({ data, selectedCategory, className, accent }: CostBreakdownChartProps) {
   const chartData = data.map((item) => ({
     id: item.category.id,
     name: item.category.name,
@@ -36,6 +37,7 @@ export function CostBreakdownChart({ data, selectedCategory, className }: CostBr
       description="Peso de cada categoría dentro del total del período."
       className={className}
       contentClassName="flex flex-col"
+      accent={accent}
       footer={
         topCategory ? (
           <>

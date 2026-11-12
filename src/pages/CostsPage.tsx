@@ -137,7 +137,7 @@ export function CostsPage() {
         actions={
           <Button variant="outline" onClick={handleExport}>
             <Download className="h-4 w-4" />
-            Exportar CSV
+            Descargar CSV
           </Button>
         }
         footnote="Los costos compartidos se asignan a las unidades de negocio según su participación en la facturación."
@@ -175,7 +175,7 @@ export function CostsPage() {
       </div>
 
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-4 sm:p-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
             <div className="w-full sm:w-80">
               <label htmlFor="category-filter" className="mb-1.5 block text-[11px] font-medium text-slate-600">
@@ -225,10 +225,15 @@ export function CostsPage() {
           className="xl:col-span-2"
           description={`Costos de los últimos 12 meses${categoryFilter !== 'todas' ? ' filtrados por categoría' : ', separados en fijos y variables'}.`}
         />
-        <CostBreakdownChart data={allCategories} selectedCategory={categoryFilter === 'todas' ? undefined : categoryFilter} />
+        <CostBreakdownChart
+          data={allCategories}
+          selectedCategory={categoryFilter === 'todas' ? undefined : categoryFilter}
+          accent="from-orange-500 via-amber-500 to-yellow-400"
+        />
       </div>
 
-      <Card>
+      <Card className="relative overflow-hidden">
+        <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-400" />
         <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
           <div className="space-y-1">
             <CardTitle>Gastos recientes</CardTitle>
@@ -236,13 +241,13 @@ export function CostsPage() {
           </div>
           <Badge variant="outline">{definition.label}</Badge>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent className="p-0 sm:p-0">
           <div className="border-t border-slate-100">
             {pageRows.length ? (
               <>
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-slate-50/60 hover:bg-slate-50/60">
+                    <TableRow className="bg-orange-50/50 hover:bg-orange-50/50">
                       <SortableHeader
                         label="Fecha"
                         column="date"

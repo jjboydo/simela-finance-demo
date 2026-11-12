@@ -97,7 +97,7 @@ export function ProfitabilityPage() {
         actions={
           <Button variant="outline" onClick={handleExport}>
             <Download className="h-4 w-4" />
-            Exportar CSV
+            Descargar CSV
           </Button>
         }
         footnote="Los costos compartidos se asignan a cada unidad según su participación en la facturación."
@@ -115,7 +115,7 @@ export function ProfitabilityPage() {
                 resultDelta >= 0 ? 'text-emerald-600' : 'text-rose-600',
               )}
             >
-              {formatSignedPercent(resultDelta, 1)} vs. período anterior
+              {formatSignedPercent(resultDelta, 1)} frente al período anterior
             </span>
           }
           icon={CircleDollarSign}
@@ -133,7 +133,7 @@ export function ProfitabilityPage() {
               )}
             >
               {marginDelta >= 0 ? '+' : ''}
-              {formatNumber(marginDelta, 1)} pp vs. período anterior
+              {formatNumber(marginDelta, 1)} pp frente al período anterior
             </span>
           }
           icon={Percent}
@@ -150,7 +150,7 @@ export function ProfitabilityPage() {
                 revenueDelta >= 0 ? 'text-emerald-600' : 'text-rose-600',
               )}
             >
-              {formatSignedPercent(revenueDelta, 1)} vs. período anterior
+              {formatSignedPercent(revenueDelta, 1)} frente al período anterior
             </span>
           }
           icon={TrendingUp}
@@ -167,7 +167,7 @@ export function ProfitabilityPage() {
                 costsDelta <= 0 ? 'text-emerald-600' : 'text-rose-600',
               )}
             >
-              {formatSignedPercent(costsDelta, 1)} vs. período anterior
+              {formatSignedPercent(costsDelta, 1)} frente al período anterior
             </span>
           }
           icon={ReceiptText}
@@ -178,9 +178,10 @@ export function ProfitabilityPage() {
       <div className="grid gap-4 xl:grid-cols-3">
         <ProfitabilityChart data={monthly} className="xl:col-span-2" />
 
-        <Card className="flex flex-col">
+        <Card className="relative flex flex-col overflow-hidden">
+          <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400" />
           <CardHeader className="pb-4">
-            <CardTitle>Ranking por rentabilidad</CardTitle>
+            <CardTitle>Orden de rentabilidad</CardTitle>
             <CardDescription>Unidades ordenadas por margen operativo.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-1 flex-col gap-5 pt-0">
@@ -242,7 +243,8 @@ export function ProfitabilityPage() {
         </Card>
       </div>
 
-      <Card>
+      <Card className="relative overflow-hidden">
+        <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400" />
         <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
           <div className="space-y-1">
             <CardTitle>Rentabilidad por unidad de negocio</CardTitle>
@@ -252,11 +254,11 @@ export function ProfitabilityPage() {
           </div>
           <Badge variant="outline">{definition.label}</Badge>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent className="p-0 sm:p-0">
           <div className="border-t border-slate-100">
             <Table>
               <TableHeader>
-                <TableRow className="bg-slate-50/60 hover:bg-slate-50/60">
+                <TableRow className="bg-violet-50/50 hover:bg-violet-50/50">
                   <TableHead>Unidad de negocio</TableHead>
                   <TableHead className="text-right">Facturación</TableHead>
                   <TableHead className="text-right">Costos directos</TableHead>
@@ -312,6 +314,7 @@ export function ProfitabilityPage() {
       <ChartCard
         title="Cómo leer la rentabilidad"
         description="Facturación, resultado y margen explican la misma historia desde tres ángulos."
+        accent="from-violet-500 via-purple-500 to-fuchsia-400"
       >
         <div className="flex flex-col gap-3 md:flex-row md:items-stretch">
           {explainer.map((item, index) => {

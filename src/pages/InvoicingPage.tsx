@@ -152,7 +152,7 @@ export function InvoicingPage() {
     <div className="space-y-6">
       <PageHeader
         title="Facturación"
-        description="Ingresos emitidos, ticket promedio y evolución de la facturación."
+        description="Ingresos emitidos, promedio por factura y evolución de la facturación."
         meta={
           <>
             <Badge variant="outline" className="py-1">
@@ -166,7 +166,7 @@ export function InvoicingPage() {
         actions={
           <Button variant="outline" onClick={handleExport}>
             <Download className="h-4 w-4" />
-            Exportar CSV
+            Descargar CSV
           </Button>
         }
         footnote="Los filtros de cliente y estado afectan los indicadores, gráficos y la tabla."
@@ -188,7 +188,7 @@ export function InvoicingPage() {
           tone="violet"
         />
         <StatCard
-          label="Ticket promedio"
+          label="Promedio por factura"
           value={formatCurrency(averageTicket)}
           description="Importe promedio por factura emitida."
           icon={BadgeDollarSign}
@@ -204,7 +204,7 @@ export function InvoicingPage() {
       </div>
 
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-4 sm:p-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
             <div className="w-full lg:w-72">
               <label htmlFor="client-filter" className="mb-1.5 block text-[11px] font-medium text-slate-600">
@@ -266,10 +266,14 @@ export function InvoicingPage() {
           className="xl:col-span-2"
           description={`Facturación de los últimos 12 meses${hasFilters ? ' con los filtros aplicados' : ' por unidad de negocio'}.`}
         />
-        <RevenueMixChart data={unitBreakdown} />
+        <RevenueMixChart
+          data={unitBreakdown}
+          accent="from-teal-500 via-cyan-500 to-sky-500"
+        />
       </div>
 
-      <Card>
+      <Card className="relative overflow-hidden">
+        <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500" />
         <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
           <div className="space-y-1">
             <CardTitle>Facturas recientes</CardTitle>
@@ -279,13 +283,13 @@ export function InvoicingPage() {
           </div>
           <Badge variant="outline">{definition.label}</Badge>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent className="p-0 sm:p-0">
           <div className="border-t border-slate-100">
             {pageRows.length ? (
               <>
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-slate-50/60 hover:bg-slate-50/60">
+                    <TableRow className="bg-teal-50/50 hover:bg-teal-50/50">
                       <SortableHeader
                         label="Factura"
                         column="number"

@@ -31,6 +31,7 @@ export function FinancialEvolutionChart({ data, className }: FinancialEvolutionC
       description="Ingresos, costos y resultado operativo de los últimos 12 meses."
       className={className}
       contentClassName="flex flex-col"
+      accent="from-indigo-500 via-blue-500 to-cyan-400"
       footer={
         <div className="grid w-full grid-cols-2 gap-4 sm:grid-cols-3">
           <div>

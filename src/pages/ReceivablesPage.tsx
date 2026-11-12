@@ -139,7 +139,7 @@ export function ReceivablesPage() {
         actions={
           <Button variant="outline" onClick={handleExport}>
             <Download className="h-4 w-4" />
-            Exportar CSV
+            Descargar CSV
           </Button>
         }
         footnote="La antigüedad se mide desde la fecha de vencimiento de cada factura. El tramo de 0 a 30 días incluye facturas aún no vencidas."
@@ -203,6 +203,7 @@ export function ReceivablesPage() {
       <ChartCard
         title="Antigüedad de la deuda"
         description="Distribución del saldo pendiente según los días transcurridos desde el vencimiento."
+        accent="from-amber-500 via-orange-500 to-rose-400"
         footer={
           <span>
             El saldo total de la cartera es {formatCurrency(receivables.total)} al{' '}
@@ -250,7 +251,8 @@ export function ReceivablesPage() {
         </div>
       </ChartCard>
 
-      <Card>
+      <Card className="relative overflow-hidden">
+        <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-rose-400" />
         <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
           <div className="space-y-1">
             <CardTitle>Clientes con saldo pendiente</CardTitle>
@@ -260,7 +262,7 @@ export function ReceivablesPage() {
           </div>
           <Badge variant="outline">{formatNumber(receivables.invoices.length)} facturas</Badge>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent className="p-0 sm:p-0">
           <div className="border-t border-slate-100 p-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
               <div className="w-full sm:max-w-xs">
@@ -326,7 +328,7 @@ export function ReceivablesPage() {
               <>
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-slate-50/60 hover:bg-slate-50/60">
+                    <TableRow className="bg-amber-50/50 hover:bg-amber-50/50">
                       <SortableHeader
                         label="Cliente"
                         column="client"

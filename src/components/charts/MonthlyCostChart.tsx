@@ -33,6 +33,7 @@ export function MonthlyCostChart({
       description={description}
       className={className}
       contentClassName="flex flex-col"
+      accent="from-orange-500 via-amber-500 to-yellow-400"
       footer={
         <span>
           Los costos fijos incluyen estructura y servicios; los variables, insumos y gastos
@@ -45,12 +46,12 @@ export function MonthlyCostChart({
           <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="cost-fixed" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#1d4ed8" stopOpacity={0.22} />
-                <stop offset="100%" stopColor="#1d4ed8" stopOpacity={0.02} />
+                <stop offset="0%" stopColor="#4f46e5" stopOpacity={0.22} />
+                <stop offset="100%" stopColor="#4f46e5" stopOpacity={0.02} />
               </linearGradient>
               <linearGradient id="cost-variable" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#0ea5e9" stopOpacity={0.22} />
-                <stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.02} />
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity={0.24} />
+                <stop offset="100%" stopColor="#06b6d4" stopOpacity={0.02} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_COLORS.grid} />
@@ -82,7 +83,7 @@ export function MonthlyCostChart({
               name="Costos fijos"
               dataKey="fijo"
               stackId="costos"
-              stroke="#1d4ed8"
+              stroke="#4f46e5"
               strokeWidth={2}
               fill="url(#cost-fixed)"
             />
@@ -91,7 +92,7 @@ export function MonthlyCostChart({
               name="Costos variables"
               dataKey="variable"
               stackId="costos"
-              stroke="#0ea5e9"
+              stroke="#06b6d4"
               strokeWidth={2}
               fill="url(#cost-variable)"
             />

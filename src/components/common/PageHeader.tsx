@@ -1,4 +1,7 @@
 import type { ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getSectionTheme } from '@/components/layout/navigation';
+import { cn } from '@/lib/utils';
 
 interface PageHeaderProps {
   title: string;
@@ -9,12 +12,16 @@ interface PageHeaderProps {
 }
 
 export function PageHeader({ title, description, meta, actions, footnote }: PageHeaderProps) {
+  const location = useLocation();
+  const theme = getSectionTheme(location.pathname);
+
   return (
     <div>
+      <span className={cn('mb-4 block h-1.5 w-16 rounded-full bg-gradient-to-r', theme.gradient)} />
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0">
           {meta ? <div className="mb-3 flex flex-wrap items-center gap-2">{meta}</div> : null}
-          <h1 className="text-[27px] font-semibold leading-tight tracking-tight text-slate-900 sm:text-[30px]">
+          <h1 className="font-display text-[28px] font-semibold leading-tight tracking-tight text-slate-900 sm:text-[32px]">
             {title}
           </h1>
           {description ? (

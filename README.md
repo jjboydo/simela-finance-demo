@@ -1,4 +1,4 @@
-# Simela Finance — Demo de gestión financiera
+# Simela · Demo de gestión financiera
 
 Demo funcional de un dashboard financiero para **Simela Salud Laboral**, pensada para una
 presentación comercial en el marco de una iniciativa de innovación abierta.
@@ -18,7 +18,8 @@ presentación comercial en el marco de una iniciativa de innovación abierta.
 - **Cuentas por cobrar:** saldo pendiente, vencido y a vencer; tasa de cobranza; antigüedad de la
   deuda; búsqueda y filtros de clientes; detalle de saldos y días de atraso.
 - **Rentabilidad:** resultado y margen operativo, ingresos vs. costos, evolución del margen,
-  ranking y detalle por unidad de negocio, y explicación visual de facturación / resultado / margen.
+  orden de rentabilidad y detalle por unidad de negocio, y explicación visual de facturación /
+  resultado / margen.
 - **Transversal:** selector global de período (últimos 30 días, últimos 90 días, año 2026 y año 2025),
   exportación CSV en cada sección, diseño responsive, tooltips y navegación por rutas.
 

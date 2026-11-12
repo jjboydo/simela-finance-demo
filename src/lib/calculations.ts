@@ -149,7 +149,7 @@ export function getReceivables(asOf: Date): ReceivablesSnapshot {
   );
 
   const bucketDefinitions = [
-    { label: '0 a 30 días', color: '#2563eb', min: 0, max: 30 },
+    { label: '0 a 30 días', color: '#4f46e5', min: 0, max: 30 },
     { label: '31 a 60 días', color: '#f59e0b', min: 31, max: 60 },
     { label: '61 a 90 días', color: '#f97316', min: 61, max: 90 },
     { label: 'Más de 90 días', color: '#e11d48', min: 91, max: Number.POSITIVE_INFINITY },

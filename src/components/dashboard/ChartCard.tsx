@@ -10,6 +10,7 @@ interface ChartCardProps {
   children: ReactNode;
   className?: string;
   contentClassName?: string;
+  accent?: string;
 }
 
 export function ChartCard({
@@ -20,9 +21,11 @@ export function ChartCard({
   children,
   className,
   contentClassName,
+  accent = 'from-indigo-500 via-cyan-400 to-emerald-400',
 }: ChartCardProps) {
   return (
-    <Card className={cn('flex flex-col transition-shadow duration-200 hover:shadow-md', className)}>
+    <Card className={cn('relative flex flex-col overflow-hidden transition-shadow duration-200 hover:shadow-md', className)}>
+      <span className={cn('absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r', accent)} />
       <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
         <div className="min-w-0 space-y-1">
           <CardTitle>{title}</CardTitle>

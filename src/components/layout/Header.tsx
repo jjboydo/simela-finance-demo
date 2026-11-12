@@ -3,8 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { DATA_UPDATED_AT } from '@/data/mock-data';
 import { formatDate } from '@/lib/formatters';
 import { PeriodSelector } from './PeriodSelector';
-import { getSectionName } from './navigation';
+import { getSectionName, getSectionTheme } from './navigation';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface HeaderProps {
   onOpenMenu: () => void;
@@ -13,6 +14,7 @@ interface HeaderProps {
 export function Header({ onOpenMenu }: HeaderProps) {
   const location = useLocation();
   const section = getSectionName(location.pathname);
+  const theme = getSectionTheme(location.pathname);
 
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/85 backdrop-blur">
@@ -28,7 +30,10 @@ export function Header({ onOpenMenu }: HeaderProps) {
         </Button>
 
         <div className="min-w-0">
-          <p className="truncate text-xs font-semibold text-slate-900 sm:text-sm">{section}</p>
+          <div className="flex items-center gap-1.5">
+            <span className={cn('h-1.5 w-1.5 shrink-0 rounded-full', theme.dot)} />
+            <p className="truncate text-xs font-semibold text-slate-900 sm:text-sm">{section}</p>
+          </div>
           <p className="hidden text-[11px] text-slate-500 sm:block">
             Simela Salud Laboral · Información de demostración
           </p>
@@ -42,6 +47,12 @@ export function Header({ onOpenMenu }: HeaderProps) {
           <PeriodSelector />
         </div>
       </div>
+      <span
+        className={cn(
+          'pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r opacity-60',
+          theme.gradient,
+        )}
+      />
     </header>
   );
 }

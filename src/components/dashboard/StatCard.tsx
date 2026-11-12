@@ -5,13 +5,37 @@ import { cn } from '@/lib/utils';
 
 type Tone = 'blue' | 'rose' | 'emerald' | 'amber' | 'violet' | 'slate';
 
-const toneClasses: Record<Tone, string> = {
-  blue: 'bg-blue-50 text-blue-600',
-  rose: 'bg-rose-50 text-rose-600',
-  emerald: 'bg-emerald-50 text-emerald-600',
-  amber: 'bg-amber-50 text-amber-600',
-  violet: 'bg-violet-50 text-violet-600',
-  slate: 'bg-slate-100 text-slate-600',
+const toneStyles: Record<Tone, { surface: string; icon: string; accent: string }> = {
+  blue: {
+    surface: 'bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/30',
+    icon: 'bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-sm shadow-blue-500/25',
+    accent: 'from-blue-500 via-indigo-400 to-cyan-300',
+  },
+  rose: {
+    surface: 'bg-gradient-to-br from-rose-50/80 via-white to-orange-50/30',
+    icon: 'bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-sm shadow-rose-500/25',
+    accent: 'from-rose-500 via-orange-400 to-amber-300',
+  },
+  emerald: {
+    surface: 'bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/30',
+    icon: 'bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-sm shadow-emerald-500/25',
+    accent: 'from-emerald-500 via-teal-400 to-cyan-300',
+  },
+  amber: {
+    surface: 'bg-gradient-to-br from-amber-50/80 via-white to-yellow-50/30',
+    icon: 'bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-sm shadow-amber-500/25',
+    accent: 'from-amber-500 via-orange-400 to-yellow-300',
+  },
+  violet: {
+    surface: 'bg-gradient-to-br from-violet-50/80 via-white to-fuchsia-50/30',
+    icon: 'bg-gradient-to-br from-violet-500 to-purple-500 text-white shadow-sm shadow-violet-500/25',
+    accent: 'from-violet-500 via-purple-400 to-fuchsia-300',
+  },
+  slate: {
+    surface: 'bg-gradient-to-br from-slate-50/80 via-white to-slate-100/30',
+    icon: 'bg-gradient-to-br from-slate-500 to-slate-700 text-white shadow-sm shadow-slate-500/20',
+    accent: 'from-slate-400 via-slate-300 to-slate-200',
+  },
 };
 
 interface StatCardProps {
@@ -25,11 +49,12 @@ interface StatCardProps {
 
 export function StatCard({ label, value, description, hint, icon: Icon, tone = 'blue' }: StatCardProps) {
   return (
-    <Card className="transition-shadow duration-200 hover:shadow-md">
-      <CardContent className="flex h-full flex-col p-5">
+    <Card className={cn('relative overflow-hidden transition-shadow duration-200 hover:shadow-md', toneStyles[tone].surface)}>
+      <span className={cn('absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r', toneStyles[tone].accent)} />
+      <CardContent className="flex h-full flex-col p-5 sm:pt-6">
         <div className="flex items-center justify-between gap-3">
           <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{label}</p>
-          <span className={cn('flex h-9 w-9 shrink-0 items-center justify-center rounded-lg', toneClasses[tone])}>
+          <span className={cn('flex h-9 w-9 shrink-0 items-center justify-center rounded-lg', toneStyles[tone].icon)}>
             <Icon className="h-4 w-4" />
           </span>
         </div>

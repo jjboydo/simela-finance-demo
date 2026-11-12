@@ -28,33 +28,38 @@ export function ReceivablesOverview({ receivables, asOf, rangeLabel }: Receivabl
       value: formatCurrency(receivables.total),
       hint: `${formatNumber(receivables.invoices.length)} facturas abiertas`,
       icon: HandCoins,
-      wrapper: 'bg-blue-50 text-blue-600',
+      wrapper: 'bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-sm shadow-blue-500/25',
+      surface: 'border-blue-100 bg-gradient-to-br from-blue-50/70 to-white',
     },
     {
       label: 'Deuda vencida',
       value: formatCurrency(receivables.overdue),
       hint: `${formatPercent(overdueShare, 1)} del saldo`,
       icon: CalendarClock,
-      wrapper: 'bg-rose-50 text-rose-600',
+      wrapper: 'bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-sm shadow-rose-500/25',
+      surface: 'border-rose-100 bg-gradient-to-br from-rose-50/70 to-white',
     },
     {
       label: 'Deuda a vencer',
       value: formatCurrency(receivables.upcoming),
       hint: `${formatPercent(upcomingShare, 1)} del saldo`,
       icon: CircleDollarSign,
-      wrapper: 'bg-amber-50 text-amber-600',
+      wrapper: 'bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-sm shadow-amber-500/25',
+      surface: 'border-amber-100 bg-gradient-to-br from-amber-50/70 to-white',
     },
     {
       label: 'Clientes con saldo',
       value: formatNumber(receivables.clientsCount),
       hint: `de ${formatNumber(clients.length)} clientes activos`,
       icon: Users,
-      wrapper: 'bg-emerald-50 text-emerald-600',
+      wrapper: 'bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-sm shadow-emerald-500/25',
+      surface: 'border-emerald-100 bg-gradient-to-br from-emerald-50/70 to-white',
     },
   ];
 
   return (
-    <Card>
+    <Card className="relative overflow-hidden">
+      <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-400" />
       <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
         <div className="space-y-1">
           <CardTitle>Cuentas por cobrar</CardTitle>
@@ -75,7 +80,7 @@ export function ReceivablesOverview({ receivables, asOf, rangeLabel }: Receivabl
           {stats.map((stat) => {
             const Icon = stat.icon;
             return (
-              <div key={stat.label} className="rounded-lg border border-slate-100 bg-slate-50/60 p-3.5">
+              <div key={stat.label} className={cn('rounded-lg border p-3.5', stat.surface)}>
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[10px] font-medium uppercase tracking-wide text-slate-500">
                     {stat.label}
@@ -97,7 +102,7 @@ export function ReceivablesOverview({ receivables, asOf, rangeLabel }: Receivabl
           {rows.length ? (
             <Table>
               <TableHeader>
-                <TableRow className="bg-slate-50/60 hover:bg-slate-50/60">
+                <TableRow className="bg-indigo-50/50 hover:bg-indigo-50/50">
                   <TableHead>Cliente</TableHead>
                   <TableHead>Emisión</TableHead>
                   <TableHead>Vencimiento</TableHead>

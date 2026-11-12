@@ -23,21 +23,21 @@ export const businessUnits: BusinessUnit[] = [
     name: 'Servicios de salud laboral',
     shortName: 'Salud laboral',
     description: 'Exámenes preocupacionales, controles periódicos y aptitud laboral.',
-    color: '#2563eb',
+    color: '#4f46e5',
   },
   {
     id: 'medicina-laboral',
     name: 'Medicina laboral',
     shortName: 'Medicina laboral',
     description: 'Consultas médicas, seguimiento de ausentismo y telemedicina.',
-    color: '#10b981',
+    color: '#14b8a6',
   },
   {
     id: 'otros-servicios',
     name: 'Otros servicios',
     shortName: 'Otros servicios',
     description: 'Capacitaciones, asesoría preventiva y estudios complementarios.',
-    color: '#8b5cf6',
+    color: '#d946ef',
   },
 ];
 
@@ -47,11 +47,11 @@ export const businessUnitById = businessUnits.reduce(
 );
 
 export const expenseCategories: ExpenseCategory[] = [
-  { id: 'recursos-humanos', name: 'Recursos humanos', color: '#1d4ed8' },
-  { id: 'insumos-medicos', name: 'Insumos médicos', color: '#0ea5e9' },
+  { id: 'recursos-humanos', name: 'Recursos humanos', color: '#4f46e5' },
+  { id: 'insumos-medicos', name: 'Insumos médicos', color: '#06b6d4' },
   { id: 'servicios-mantenimiento', name: 'Servicios y mantenimiento', color: '#8b5cf6' },
   { id: 'administracion', name: 'Administración', color: '#f59e0b' },
-  { id: 'otros-gastos', name: 'Otros gastos', color: '#94a3b8' },
+  { id: 'otros-gastos', name: 'Otros gastos', color: '#f43f5e' },
 ];
 
 export const expenseCategoryById = expenseCategories.reduce(

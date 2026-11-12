@@ -33,6 +33,7 @@ export function MonthlyRevenueChart({
       description={description}
       className={className}
       contentClassName="flex flex-col"
+      accent="from-teal-500 via-cyan-500 to-sky-500"
       footer={
         <span>
           Cada barra representa la facturación emitida en el mes. La altura total equivale a los
@@ -71,21 +72,21 @@ export function MonthlyRevenueChart({
               name="Salud laboral"
               dataKey="salud-laboral"
               stackId="facturacion"
-              fill="#2563eb"
+              fill="#4f46e5"
               barSize={22}
             />
             <Bar
               name="Medicina laboral"
               dataKey="medicina-laboral"
               stackId="facturacion"
-              fill="#10b981"
+              fill="#14b8a6"
               barSize={22}
             />
             <Bar
               name="Otros servicios"
               dataKey="otros-servicios"
               stackId="facturacion"
-              fill="#8b5cf6"
+              fill="#d946ef"
               radius={[4, 4, 0, 0]}
               barSize={22}
             />
